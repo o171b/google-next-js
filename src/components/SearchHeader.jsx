@@ -15,6 +15,8 @@ export default function SearchHeader() {
         alt="Google Logo"
         width={120}
         height={40}
+        style={{width: 'auto'}}
+        priority
         >
         </Image>
         </Link>
