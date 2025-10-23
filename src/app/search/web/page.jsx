@@ -1,12 +1,15 @@
+import WebSearchResults from "@/components/WebSearchResults";
 import Link from "next/link";
 
 export default async function WebSearchPage({ searchParams }) {
+  const params = await searchParams;
   const response = await fetch(
-    `https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${searchParams.searchTerm}'}`
+    `https://www.googleapis.com/customsearch/v1?key=${process.env.API_KEY}&cx=${process.env.CONTEXT_KEY}&q=${params.searchTerm}'}`
   );
   if (!response.ok) throw new Error('Something went wrong');
   const data = await response.json();
   const results = data.items;
+  console.log(results)
   
   if (!results) {
     return (
@@ -26,9 +29,7 @@ export default async function WebSearchPage({ searchParams }) {
 
   return (
     <div>
-      {results && results.map((result) => (
-        <h1 key={result.htmlFormattedUrl}>{result.title}</h1>
-      ))}
+     {results && <WebSearchResults results={data} />}
     </div>
   )
 }
