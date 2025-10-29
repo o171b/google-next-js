@@ -1,6 +1,8 @@
 import WebSearchResults from "@/components/WebSearchResults";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 export default async function WebSearchPage({ searchParams }) {
   const params = await searchParams;
   const startIndex = searchParams.start || '1';
